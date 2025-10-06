@@ -47,7 +47,7 @@ pipeline {
 					}
 				}
 			}
-		// }
+		}
 		// stage('Install Kubectl'){
 		// 	steps {
 		// 		sh '''
@@ -77,6 +77,7 @@ pipeline {
 		}
 	}
 }
+
 
 
 
