@@ -3,10 +3,13 @@ pipeline {
 	tools {
 		nodejs 'NodeJS'
 	}
-	// environment {
-	// 	DOCKER_HUB_CREDENTIALS_ID = 'jen-dockerhub'
-	// 	DOCKER_HUB_REPO = 'iquantc/iquant-app'
-	// }
+	environment {
+		// DOCKER_HUB_CREDENTIALS_ID = 'jen-dockerhub'
+		// DOCKER_HUB_REPO = 'iquantc/iquant-app'
+		DOCKER_HUB_CREDENTIALS_ID = 'dockerhub-jenkins-token'
+		DOCKER_REGISTRY='https://hub.docker.com/u/sravya291'
+		DOCKER_HUB_REPO='sravya291/project-apps'
+	}
 	stages {
 		stage('Checkout Github'){
 			steps {
@@ -26,8 +29,8 @@ pipeline {
 		stage('Build Docker Image'){
 			steps {
 				script {
-					docker.build("nodeimage"+"$BUILD_NUMBER")
-					//dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
+					//docker.build("nodeimage"+"$BUILD_NUMBER")
+					dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
 				}
 			}
 		}
@@ -36,14 +39,14 @@ pipeline {
 		// 		sh 'trivy --severity HIGH,CRITICAL --no-progress image --format table -o trivy-scan-report.txt ${DOCKER_HUB_REPO}:latest'
 		// 	}
 		// }
-		// stage('Push Image to DockerHub'){
-		// 	steps {
-		// 		script {
-		// 			docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS_ID}"){
-		// 				dockerImage.push('latest')
-		// 			}
-		// 		}
-		// 	}
+		stage('Push Image to DockerHub'){
+			steps {
+				script {
+					docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS_ID}"){
+						dockerImage.push('latest')
+					}
+				}
+			}
 		// }
 		// stage('Install Kubectl'){
 		// 	steps {
@@ -74,6 +77,7 @@ pipeline {
 		}
 	}
 }
+
 
 
 
