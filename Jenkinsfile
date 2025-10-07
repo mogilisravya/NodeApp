@@ -8,7 +8,8 @@ pipeline {
 		// DOCKER_HUB_REPO = 'iquantc/iquant-app'
 		//DOCKER_HUB_CREDENTIALS_ID = 'dockerhub-jenkins-token'
 		DOCKER_REGISTRY='https://hub.docker.com/u/sravya291'
-		DOCKER_HUB_REPO='sravya291/project-apps'
+		//DOCKER_HUB_REPO='sravya291/project-apps'
+		DOCKER_HUB_REPO='sravya291/project'
 	}
 	stages {
 		stage('Checkout Github'){
@@ -29,8 +30,8 @@ pipeline {
 		stage('Build Docker Image'){
 			steps {
 				script {
-					docker.build("nodeimage"+"$BUILD_NUMBER")
-					//dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
+					//docker.build("nodeimage"+"$BUILD_NUMBER")
+					dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
 				}
 			}
 		}
@@ -77,6 +78,7 @@ pipeline {
 		}
 	}
 }
+
 
 
 
