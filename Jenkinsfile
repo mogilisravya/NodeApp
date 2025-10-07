@@ -4,10 +4,10 @@ pipeline {
 		nodejs 'NodeJS'
 	}
 	environment {
-		// DOCKER_HUB_CREDENTIALS_ID = 'jen-dockerhub'
+		DOCKER_HUB_CREDENTIALS_ID = 'jen-dockerhub'
 		// DOCKER_HUB_REPO = 'iquantc/iquant-app'
-		DOCKER_HUB_CREDENTIALS_ID = 'dockerhub-jenkins-token'
-		//DOCKER_REGISTRY='https://hub.docker.com/u/sravya291'
+		//DOCKER_HUB_CREDENTIALS_ID = 'dockerhub-jenkins-token'
+		DOCKER_REGISTRY='https://hub.docker.com/u/sravya291'
 		DOCKER_HUB_REPO='sravya291/project-apps'
 	}
 	stages {
@@ -77,6 +77,7 @@ pipeline {
 		}
 	}
 }
+
 
 
 
