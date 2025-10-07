@@ -29,8 +29,8 @@ pipeline {
 		stage('Build Docker Image'){
 			steps {
 				script {
-					docker.build("nodeimage"+"$BUILD_NUMBER")
-					//dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
+					//docker.build("nodeimage"+"$BUILD_NUMBER")
+					dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
 				}
 			}
 		}
@@ -77,6 +77,7 @@ pipeline {
 		}
 	}
 }
+
 
 
 
