@@ -14,9 +14,10 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: iquantc/iquant-app:latest
+        image: sravya291/project-apps:latest
         ports:
         - containerPort: 3000
       imagePullSecrets:
       - name: dockerhub-secret
+
 
